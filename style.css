@@ -2339,6 +2339,40 @@ body.is-opened .page-indicators {
 }
 
 .s3-when {
-  margin-top: auto !important;
-  padding-top: 4vh !important;
+  margin-top: clamp(15px, 3dvh, 30px) !important;
+  padding-top: 0 !important;
+}
+
+
+/* ===================================================
+   AJUSTES DE ALINHAMENTO, ESPAÇAMENTO E TIPOGRAFIA
+=================================================== */
+/* 1. Página 2: Descer o título SAVE the DATE */
+.save-date {
+  margin-top: clamp(25px, 5dvh, 45px) !important;
+}
+
+/* 2. Página 3: Retirar negrito e distribuir elementos */
+.s3-names,
+.s3-name {
+  font-weight: normal !important;
+}
+
+.s3-content {
+  height: auto !important;
+  gap: clamp(14px, 2.5dvh, 26px) !important;
+}
+
+.s3-when {
+  margin-top: clamp(15px, 3dvh, 30px) !important;
+  padding-top: 0 !important;
+}
+
+/* 3. Página 5: Ajuste de enquadramento */
+.page-screen5 .s5-content {
+  gap: clamp(12px, 2dvh, 20px) !important;
+}
+
+.s5-box {
+  padding: clamp(16px, 2.5dvh, 22px) clamp(14px, 3vw, 20px) !important;
 }
