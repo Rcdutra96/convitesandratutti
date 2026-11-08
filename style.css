@@ -16,6 +16,14 @@
   --flap-transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+@font-face {
+  font-family: 'Caramella';
+  src: url('caramella.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -2235,4 +2243,51 @@ body.is-opened .page-indicators {
 .book-page:not(.page-active) .band-right {
   transform: translate(10%, 10%) scale(0.9) !important;
   opacity: 0.7 !important;
+}
+
+
+/* ===================================================
+   FONTE CUSTOMIZADA: CARAMELLA
+=================================================== */
+.love-quote,
+.place,
+.s3-text,
+.s3-place,
+.s3-date,
+.s4-title,
+.s4-place,
+.s4-time,
+.s4-address,
+.s4-btn,
+.s5-title,
+.s5-intro,
+.s5-box-text,
+.s5-deadline,
+.s5-btn,
+.s5-request-title,
+.s5-request-text,
+.s5-caption,
+.s6-title,
+.s6-text,
+.s6-date,
+.s6-footer p {
+  font-family: 'Caramella', 'Cinzel', serif !important;
+}
+
+.s3-date,
+.s4-title {
+  font-weight: 700 !important;
+}
+
+/* ===================================================
+   AUMENTO E SOBREPOSIÇÃO DAS FLORES (Z-INDEX 90)
+=================================================== */
+.s3-flora,
+.band-flora {
+  max-height: 24dvh !important;
+  max-width: 60vw !important;
+  width: auto !important;
+  object-fit: contain !important;
+  pointer-events: none !important;
+  z-index: 90 !important;
 }
