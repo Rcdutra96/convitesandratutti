@@ -369,21 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===================================================
-  // MODAL LISTA DE PRESENTES & COPIAR CHAVE PIX
-  // ===================================================
-  const pixModal = document.getElementById('pixModal');
-  const openPixGiftBtn = document.getElementById('openPixGiftBtn');
-  const closePixModalBtn = document.getElementById('closePixModalBtn');
-  const copyPixBtn = document.getElementById('copyPixBtn');
-  const copyPixText = document.getElementById('copyPixText');
-  const pixKeyValue = document.getElementById('pixKeyValue');
 
-  if (openPixGiftBtn && pixModal) {
-    openPixGiftBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      pixModal.classList.add('active');
-      pixModal.setAttribute('aria-hidden', 'false');
     });
   }
 
