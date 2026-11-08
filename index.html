@@ -129,8 +129,27 @@
   </svg>
 
   <!-- TELA 2: Convite interno (fica atrás das abas) -->
+    <!-- TELA 2 a 6: Livro de Páginas Interativo (após abertura) -->
   <main class="invitation-interior" id="invitation">
-    <div class="screen2">
+    <!-- Botão de Som Mute/Unmute -->
+    <button type="button" class="sound-toggle-btn" id="soundToggleBtn" aria-label="Ativar ou desativar som" title="Som">
+      <svg class="sound-icon sound-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+      </svg>
+      <svg class="sound-icon sound-icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" y1="9" x2="17" y2="15"></line>
+        <line x1="17" y1="9" x2="23" y2="15"></line>
+      </svg>
+    </button>
+
+    <!-- Contêiner do Livro -->
+    <div id="bookContainer" class="book-container">
+      <!-- Página 1 (Save the Date) -->
+      <section class="book-page page-screen2" data-page="0">
+        <div class="screen2">
       <header class="floral-band floral-band-top" aria-hidden="true">
         <img class="band-flora band-left" src="flora_top.png" alt="">
         <img class="band-flora band-right" src="flora_top.png" alt="">
@@ -155,9 +174,11 @@
         <img class="band-flora band-right" src="flora_bottom.png" alt="">
       </footer>
     </div>
+      </section>
 
-    <!-- TELA 3: Convite oficial (continua a rolagem após a Tela 2) -->
-    <section class="screen3" id="convite-oficial">
+      <!-- Página 2 (Convite Oficial) -->
+      <section class="book-page page-screen3" data-page="1">
+        <section class="screen3" id="convite-oficial">
       <img class="s3-flora s3-flora-top" src="flora_top.png" alt="" aria-hidden="true">
       <img class="s3-flora s3-flora-bottom" src="flora_bottom.png" alt="" aria-hidden="true">
 
@@ -180,9 +201,11 @@
         </div>
       </div>
     </section>
+      </section>
 
-    <!-- TELA 4: Cerimônia e Festa -->
-    <section class="screen4" id="cerimonia-festa">
+      <!-- Página 3 (Cerimônia e Festa) -->
+      <section class="book-page page-screen4" data-page="2">
+        <section class="screen4" id="cerimonia-festa">
       <img class="s3-flora s3-flora-top" src="flora_top.png" alt="" aria-hidden="true">
       <img class="s3-flora s3-flora-bottom" src="flora_bottom.png" alt="" aria-hidden="true">
 
@@ -221,9 +244,11 @@
         <p class="s4-monogram">T &amp; S</p>
       </div>
     </section>
+      </section>
 
-    <!-- TELA 5: Confirmação e Paleta -->
-    <section class="screen5" id="confirmacao">
+      <!-- Página 4 (Confirmação e Paleta) -->
+      <section class="book-page page-screen5" data-page="3">
+        <section class="screen5" id="confirmacao">
       <img class="s3-flora s3-flora-top" src="flora_top.png" alt="" aria-hidden="true">
       <img class="s3-flora s3-flora-bottom" src="flora_bottom.png" alt="" aria-hidden="true">
 
@@ -267,9 +292,11 @@
         </section>
       </div>
     </section>
+      </section>
 
-    <!-- TELA 6: Encerramento -->
-    <section class="screen6" id="encerramento">
+      <!-- Página 5 (Encerramento) -->
+      <section class="book-page page-screen6" data-page="4">
+        <section class="screen6" id="encerramento">
       <img class="s3-flora s3-flora-top" src="flora_top.png" alt="" aria-hidden="true">
       <img class="s3-flora s3-flora-bottom" src="flora_bottom.png" alt="" aria-hidden="true">
 
@@ -295,6 +322,35 @@
         </div>
       </div>
     </section>
+      </section>
+    </div>
+
+    <!-- Botões de Navegação Lateral -->
+    <button type="button" class="nav-arrow nav-arrow-prev" id="prevPageBtn" aria-label="Página anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button type="button" class="nav-arrow nav-arrow-next" id="nextPageBtn" aria-label="Próxima página">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Indicador de Páginas (Pontinhos sutis) -->
+    <div class="page-indicators" id="pageIndicators" aria-hidden="true">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
+      <span class="dot" data-index="3"></span>
+      <span class="dot" data-index="4"></span>
+    </div>
+
+    <!-- Áudio de virada de página -->
+    <audio id="pageTurnSound" preload="auto">
+      <source src="page-turn.wav" type="audio/wav">
+      <source src="https://actions.google.com/sounds/v1/foley/book_page_turn.ogg" type="audio/ogg">
+    </audio>
   </main>
 
   <!-- TELA 1: Envelope com duas abas (arte da image_0.png sem o lacre) -->

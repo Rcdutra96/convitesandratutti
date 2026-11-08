@@ -1461,3 +1461,276 @@ html, body, body.is-opened { overflow: hidden; }
   letter-spacing: 0.22em;
   color: var(--wine-dark);
 }
+
+/* ===================================================
+   SISTEMA DE NAVEGAÇÃO EM LIVRO / CARDS (PÁGINAS)
+=================================================== */
+html, body, body.is-opened {
+  overflow: hidden !important;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.invitation-interior {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--bg-pearl);
+  z-index: 10;
+  display: block;
+  perspective: 1400px; /* Perspectiva 3D para virada de página */
+}
+
+.book-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Cada página do livro */
+.book-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  background: var(--bg-pearl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform-origin: left center;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.55s ease, visibility 0.65s;
+  will-change: transform, opacity;
+  z-index: 1;
+}
+
+/* Estado: Página Ativa */
+.book-page.page-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0) rotateY(0deg);
+  z-index: 10;
+}
+
+/* Estado: Página Anterior (à esquerda, simulando folha virada) */
+.book-page.page-prev {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(-20%, 0, -80px) rotateY(-35deg);
+  transform-origin: left center;
+  z-index: 5;
+}
+
+/* Estado: Página Seguinte (à direita, aguardando entrada) */
+.book-page.page-next {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(20%, 0, -80px) rotateY(35deg);
+  transform-origin: right center;
+  z-index: 5;
+}
+
+/* Ajustes nas seções internas para preencherem 100% da página */
+.page-screen2 .screen2,
+.page-screen3 .screen3,
+.page-screen4 .screen4,
+.page-screen5 .screen5,
+.page-screen6 .screen6 {
+  min-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.page-screen3 .screen3,
+.page-screen4 .screen4,
+.page-screen5 .screen5,
+.page-screen6 .screen6 {
+  padding-top: clamp(100px, 16vh, 150px);
+  padding-bottom: clamp(90px, 14vh, 130px);
+}
+
+/* ===================================================
+   BOTÕES DE NAVEGAÇÃO LATERAL (SETAS)
+=================================================== */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(184, 144, 71, 0.45);
+  color: var(--wine-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 50;
+  box-shadow: 0 4px 14px rgba(94, 11, 59, 0.12);
+  transition: all 0.25s ease;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body.is-opened .nav-arrow {
+  opacity: 0.9;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.nav-arrow:hover {
+  background: #ffffff;
+  color: var(--gold-dark);
+  border-color: var(--gold-primary);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 6px 18px rgba(184, 144, 71, 0.3);
+}
+
+.nav-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.nav-arrow:disabled,
+.nav-arrow.disabled {
+  opacity: 0.25 !important;
+  cursor: not-allowed;
+  pointer-events: none !important;
+  transform: translateY(-50%) !important;
+}
+
+.nav-arrow-prev {
+  left: 10px;
+}
+
+.nav-arrow-next {
+  right: 10px;
+}
+
+.nav-arrow svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ===================================================
+   BOTÃO DE SOM (MUTE / UNMUTE)
+=================================================== */
+.sound-toggle-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(184, 144, 71, 0.4);
+  color: var(--wine-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 55;
+  box-shadow: 0 3px 12px rgba(61, 43, 53, 0.1);
+  transition: all 0.25s ease;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body.is-opened .sound-toggle-btn {
+  opacity: 0.95;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.sound-toggle-btn:hover {
+  transform: scale(1.06);
+  border-color: var(--gold-primary);
+}
+
+.sound-toggle-btn:active {
+  transform: scale(0.94);
+}
+
+.sound-toggle-btn svg {
+  width: 19px;
+  height: 19px;
+}
+
+.sound-toggle-btn .sound-icon-off {
+  display: none;
+}
+
+.sound-toggle-btn.is-muted .sound-icon-on {
+  display: none;
+}
+
+.sound-toggle-btn.is-muted .sound-icon-off {
+  display: block;
+  color: var(--text-muted);
+}
+
+/* ===================================================
+   INDICADORES DE PÁGINA (DOTS)
+=================================================== */
+.page-indicators {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+body.is-opened .page-indicators {
+  opacity: 0.85;
+  visibility: visible;
+}
+
+.page-indicators .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(94, 11, 59, 0.25);
+  border: 1px solid rgba(184, 144, 71, 0.5);
+  transition: all 0.3s ease;
+}
+
+.page-indicators .dot.active {
+  width: 20px;
+  border-radius: 10px;
+  background: var(--wine-dark);
+  border-color: var(--wine-dark);
+}
+
+@media (max-width: 480px) {
+  .nav-arrow {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.75);
+  }
+  .nav-arrow-prev { left: 6px; }
+  .nav-arrow-next { right: 6px; }
+}
