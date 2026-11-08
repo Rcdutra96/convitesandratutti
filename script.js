@@ -244,14 +244,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const diffX = touchEndX - touchStartX;
     const diffY = touchEndY - touchStartY;
 
-    // Se o movimento horizontal for predominante em relação ao vertical
+    // Se o movimento horizontal for predominante (virar a página)
     if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > minSwipeDistance) {
       if (diffX < 0) {
-        // Swipe para esquerda -> Próxima página
         nextPage();
       } else {
-        // Swipe para direita -> Página anterior
         prevPage();
+      }
+    }
+    // NOVO: Se o movimento vertical para baixo for predominante (pull-to-refresh)
+    else if (Math.abs(diffY) > Math.abs(diffX) && diffY > 80) {
+      const activePage = document.querySelector('.book-page.page-active');
+      // Verifica se a página existe e se o usuário está no topo dela (scroll 0)
+      if (activePage && activePage.scrollTop <= 0) {
+        window.location.reload();
       }
     }
   };
