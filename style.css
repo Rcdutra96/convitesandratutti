@@ -1051,3 +1051,97 @@ html, body, body.is-opened { overflow: hidden; }
 .envelope-wrapper.seal-breaking .seal-half-right { transform: translate(calc(var(--u) * 34), calc(var(--u) * 10)) rotate(12deg); opacity: 0; }
 
 .wax-seal-btn { animation: none; } /* o "pulse" fica no anel dourado, sem sobrescrever o translate */
+
+/* Molduras da Tela 2 com recortes florais da image_0.png (fundo transparente) */
+.band-flora { height: auto; width: min(64vw, 300px); }
+.floral-band-top .band-left   { top: 0; left: 0; transform: none; }
+.floral-band-top .band-right  { top: 0; right: 0; left: auto; transform: scaleX(-1); }
+.floral-band-bottom .band-right { bottom: 0; right: 0; transform: none; }
+.floral-band-bottom .band-left  { bottom: 0; left: 0; right: auto; transform: scaleX(-1); }
+
+/* ==========================================
+   TELA 3: CONVITE OFICIAL
+========================================== */
+.screen3 {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(150px, 24vh, 210px) 24px;
+  background: var(--bg-pearl);
+  overflow: hidden;
+}
+
+.s3-flora {
+  position: absolute;
+  height: auto;
+  width: min(62vw, 290px);
+  pointer-events: none;
+}
+.s3-flora-top    { top: 0; left: 0; }
+.s3-flora-bottom { bottom: 0; right: 0; }
+
+.s3-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(22px, 4vh, 34px);
+  text-align: center;
+}
+
+.s3-monogram {
+  font-family: 'Playfair Display', 'Cinzel', serif;
+  font-weight: 500;
+  font-size: clamp(3.4rem, 15vw, 4.8rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--wine-dark);
+}
+
+.s3-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #7a4a63;
+  max-width: 320px;
+}
+
+.s3-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-body);
+}
+
+.s3-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--wine-dark);
+}
+.s3-name { font-size: clamp(1.45rem, 6.4vw, 1.9rem); line-height: 1.2; }
+.s3-amp  { font-size: 0.8em; font-weight: 400; font-size: 1.2rem; }
+
+.s3-when { display: flex; flex-direction: column; gap: 8px; }
+.s3-date {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: clamp(1.1rem, 4.8vw, 1.35rem);
+  color: var(--wine-dark);
+}
+.s3-place {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-body);
+}
