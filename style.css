@@ -2386,11 +2386,13 @@ body.is-opened .page-indicators {
 .s4-monogram,
 .s5-monogram,
 .s6-monogram,
-.s3-name {
+.s6-footer .s6-monogram,
+.s3-name,
+.names {
   color: var(--wine-dark) !important;
   -webkit-text-fill-color: var(--wine-dark) !important;
-  background-clip: unset !important;
-  -webkit-background-clip: unset !important;
+  background-clip: border-box !important;
+  -webkit-background-clip: border-box !important;
   text-shadow: 0 1px 2px rgba(94, 11, 59, 0.1);
 }
 
@@ -2403,11 +2405,13 @@ body.is-opened .page-indicators {
 }
 
 /* ===================================================
-   CORREÇÃO DEFINITIVA DE PREENCHIMENTO SÓLIDO (CARAMELLA & TIMES)
+   CORREÇÃO DO BUG DE VETORES SOBREPOSTOS NO ANDROID
 =================================================== */
-.love-quote, .place, .s3-text, .s3-place, .s3-date, .s4-title, .s4-place, .s4-time, .s4-address, .s4-btn, .s5-title, .s5-intro, .s5-box-text, .s5-deadline, .s5-btn, .s5-request-title, .s5-request-text, .s5-caption, .s6-title, .s6-text, .s6-date, .s6-footer p, .names, .s3-monogram, .s3-name, .s3-amp, .s4-monogram, .s5-monogram, .s6-monogram {
-  -webkit-text-fill-color: initial !important;
+.love-quote, .place, .s3-text, .s3-place, .s3-date, .s4-title, .s4-place, .s4-time, .s4-address, .s4-btn, .s5-title, .s5-intro, .s5-box-text, .s5-deadline, .s5-btn, .s5-request-title, .s5-request-text, .s5-caption, .s6-title, .s6-text, .s6-date, .s6-footer p {
   color: var(--wine-dark) !important;
+  -webkit-text-fill-color: var(--wine-dark) !important;
+  -webkit-text-stroke: 0.4px var(--wine-dark) !important;
+  text-shadow: 0 0 1px var(--wine-dark) !important;
   background-clip: border-box !important;
   -webkit-background-clip: border-box !important;
 }
