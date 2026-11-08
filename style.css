@@ -2270,7 +2270,7 @@ body.is-opened .page-indicators {
 .s6-title,
 .s6-text,
 .s6-date,
-.s6-footer p {
+.s6-footer p:not(.s6-monogram) {
   font-family: 'Caramella', 'Cinzel', serif !important;
 }
 
@@ -2323,7 +2323,8 @@ body.is-opened .page-indicators {
 .s3-amp,
 .s4-monogram,
 .s5-monogram,
-.s6-monogram {
+.s6-monogram,
+.s6-footer .s6-monogram {
   font-family: 'Times New Roman', Times, serif !important;
 }
 
@@ -2398,5 +2399,15 @@ body.is-opened .page-indicators {
 .s5-monogram span,
 .s6-monogram span {
   font-size: 0.75em !important;
-  font-style: italic !important; /* Mantém a elegância da Times */
+  font-style: normal !important;
+}
+
+/* ===================================================
+   CORREÇÃO DEFINITIVA DE PREENCHIMENTO SÓLIDO (CARAMELLA & TIMES)
+=================================================== */
+.love-quote, .place, .s3-text, .s3-place, .s3-date, .s4-title, .s4-place, .s4-time, .s4-address, .s4-btn, .s5-title, .s5-intro, .s5-box-text, .s5-deadline, .s5-btn, .s5-request-title, .s5-request-text, .s5-caption, .s6-title, .s6-text, .s6-date, .s6-footer p, .names, .s3-monogram, .s3-name, .s3-amp, .s4-monogram, .s5-monogram, .s6-monogram {
+  -webkit-text-fill-color: initial !important;
+  color: var(--wine-dark) !important;
+  background-clip: border-box !important;
+  -webkit-background-clip: border-box !important;
 }
