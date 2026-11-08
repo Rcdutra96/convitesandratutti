@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       pageTurnSound.currentTime = 0;
       pageTurnSound.volume = 0.55;
+      pageTurnSound.playbackRate = 1.8; // Acelera o áudio em 1.5x
       const playPromise = pageTurnSound.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
@@ -308,5 +309,118 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initGoldenParticles();
+
+
+  // ===================================================
+  // CONTAGEM REGRESSIVA PARA 06/02/2027 17:00
+  // ===================================================
+  const targetDate = new Date('2027-02-06T17:00:00-03:00').getTime();
+  const cdDays = document.getElementById('cdDays');
+  const cdHours = document.getElementById('cdHours');
+  const cdMins = document.getElementById('cdMins');
+  const cdSecs = document.getElementById('cdSecs');
+
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      if (cdDays) cdDays.textContent = '00';
+      if (cdHours) cdHours.textContent = '00';
+      if (cdMins) cdMins.textContent = '00';
+      if (cdSecs) cdSecs.textContent = '00';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    if (cdDays) cdDays.textContent = String(days).padStart(2, '0');
+    if (cdHours) cdHours.textContent = String(hours).padStart(2, '0');
+    if (cdMins) cdMins.textContent = String(mins).padStart(2, '0');
+    if (cdSecs) cdSecs.textContent = String(secs).padStart(2, '0');
+  };
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ===================================================
+  // ADICIONAR AO GOOGLE CALENDAR / ICS
+  // ===================================================
+  const addToCalBtn = document.getElementById('addToCalBtn');
+  if (addToCalBtn) {
+    addToCalBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const title = encodeURIComponent('Casamento Sandra & Tutti');
+      const details = encodeURIComponent('Celebração do casamento de Sandra Maria Santi e Jorge de Oliveira (Tutti). Início às 17h.');
+      const location = encodeURIComponent('Paróquia Nossa Senhora do Bom Parto, Nova Prata do Iguaçu - PR');
+      // 06 de Fevereiro de 2027 das 17h às 23h (UTC-3: 200000Z até 020000Z do dia seguinte)
+      const dates = '20270206T200000Z/20270207T030000Z';
+      const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+      window.open(googleCalUrl, '_blank');
+    });
+  }
+
+  // ===================================================
+  // MODAL LISTA DE PRESENTES & COPIAR CHAVE PIX
+  // ===================================================
+  const pixModal = document.getElementById('pixModal');
+  const openPixGiftBtn = document.getElementById('openPixGiftBtn');
+  const closePixModalBtn = document.getElementById('closePixModalBtn');
+  const copyPixBtn = document.getElementById('copyPixBtn');
+  const copyPixText = document.getElementById('copyPixText');
+  const pixKeyValue = document.getElementById('pixKeyValue');
+
+  if (openPixGiftBtn && pixModal) {
+    openPixGiftBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      pixModal.classList.add('active');
+      pixModal.setAttribute('aria-hidden', 'false');
+    });
+  }
+
+  if (closePixModalBtn && pixModal) {
+    closePixModalBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      pixModal.classList.remove('active');
+      pixModal.setAttribute('aria-hidden', 'true');
+    });
+  }
+
+  if (pixModal) {
+    pixModal.addEventListener('click', (e) => {
+      if (e.target === pixModal) {
+        pixModal.classList.remove('active');
+        pixModal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  if (copyPixBtn && pixKeyValue) {
+    copyPixBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const textToCopy = pixKeyValue.textContent.trim();
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        if (copyPixText) copyPixText.textContent = 'CHAVE COPIADA! ✓';
+        setTimeout(() => {
+          if (copyPixText) copyPixText.textContent = 'COPIAR CHAVE PIX';
+        }, 2500);
+      }).catch(() => {
+        // Fallback
+        const textArea = document.createElement('textarea');
+        textArea.value = textToCopy;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        if (copyPixText) copyPixText.textContent = 'CHAVE COPIADA! ✓';
+        setTimeout(() => {
+          if (copyPixText) copyPixText.textContent = 'COPIAR CHAVE PIX';
+        }, 2500);
+      });
+    });
+  }
 
 });
