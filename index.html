@@ -176,33 +176,13 @@
     </article>
   </main>
 
-  <!-- TELA 1: Envelope com duas abas -->
+  <!-- TELA 1: Envelope com duas abas (arte da image_0.png dividida ao meio) -->
   <div class="envelope-wrapper" id="envelopeWrapper">
-    <div class="flap flap-left">
-      <svg class="floral-corner floral-top-left" viewBox="0 0 300 300" aria-hidden="true"><use href="#floralCorner"/></svg>
-      <span class="envelope-monogram-part monogram-t" aria-hidden="true">T</span>
-      <span class="monogram-amp-half" aria-hidden="true">&amp;</span>
-    </div>
-    <div class="flap flap-right">
-      <svg class="floral-corner floral-bottom-right" viewBox="0 0 300 300" aria-hidden="true" style="transform: rotate(180deg)"><use href="#floralCorner"/></svg>
-      <span class="envelope-monogram-part monogram-s" aria-hidden="true">S</span>
-    </div>
-
-    <div class="seal-stage">
-      <svg class="curved-prompt-svg" viewBox="0 0 210 75" aria-hidden="true">
-        <path id="promptArc" d="M12 66 A93 93 0 0 1 198 66" fill="none"/>
-        <text class="curved-prompt-text" text-anchor="middle">
-          <textPath href="#promptArc" startOffset="50%">Clique para abrir</textPath>
-        </text>
-      </svg>
-
-      <button type="button" class="wax-seal-btn" id="waxSealBtn" aria-label="Abrir convite">
-        <svg class="seal-half seal-half-left" viewBox="0 0 112 112" aria-hidden="true"><use href="#waxSeal"/></svg>
-        <svg class="seal-half seal-half-right" viewBox="0 0 112 112" aria-hidden="true"><use href="#waxSeal"/></svg>
-      </button>
-
-      <svg class="seal-floral-embrace" viewBox="0 0 190 80" aria-hidden="true"><use href="#sealEmbrace"/></svg>
-    </div>
+    <div class="flap flap-left" aria-hidden="true"></div>
+    <div class="flap flap-right" aria-hidden="true"></div>
+    <button type="button" class="wax-seal-btn" id="waxSealBtn" aria-label="Clique para abrir o convite">
+      <span class="seal-ring"></span>
+    </button>
   </div>
 
   <!-- Símbolo do lacre de cera -->

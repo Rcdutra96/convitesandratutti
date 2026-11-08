@@ -821,3 +821,52 @@ body.is-opened .invitation-interior {
   }
 }
 
+
+/* ==========================================
+   ENVELOPE COM A ARTE DA image_0.png (sobrescreve regras anteriores)
+========================================== */
+.envelope-wrapper { --u: max(calc(100vw / 572), calc(100dvh / 1024)); }
+
+.flap { background: var(--bg-pearl); }
+.flap::after { display: none; }
+
+/* Cada aba mostra metade da imagem (cover, centralizada) */
+.flap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: url('image_0.png') center / cover no-repeat;
+}
+.flap-left::before { left: 0; }
+.flap-right::before { left: -50vw; }
+
+/* Botão transparente sobre o lacre da imagem, centro em (50%, 50%) */
+.wax-seal-btn {
+  position: absolute;
+  top: 49.8%;
+  left: 50%;
+  width: calc(var(--u) * 170);
+  height: calc(var(--u) * 170);
+  margin: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: none;
+  z-index: 10;
+}
+.wax-seal-btn:hover, .wax-seal-btn:active { transform: translate(-50%, -50%); }
+
+.seal-ring {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 2px solid rgba(212, 175, 55, 0.8);
+  animation: ringPulse 2.2s ease-out infinite;
+}
+@keyframes ringPulse {
+  0%   { transform: scale(0.85); opacity: 0.9; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.envelope-wrapper.seal-breaking .wax-seal-btn { opacity: 0; transition: opacity 0.3s ease; }
