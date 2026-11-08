@@ -2196,3 +2196,43 @@ body.is-opened .page-indicators {
   font-size: clamp(0.95rem, 2.8dvh, 1.35rem) !important;
   line-height: 1.25 !important;
 }
+
+
+/* ===================================================
+   ANIMAÇÕES E Z-INDEX DAS FLORES
+=================================================== */
+.s3-flora,
+.band-flora {
+  max-height: 18dvh !important;
+  max-width: 45vw !important;
+  width: auto !important;
+  object-fit: contain !important;
+  pointer-events: none !important;
+  z-index: 45 !important;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease !important;
+  will-change: transform;
+}
+
+/* Quando a página está ativa, flores vêm para a posição normal */
+.book-page.page-active .s3-flora-top,
+.book-page.page-active .band-left {
+  transform: translate(0, 0) scale(1) !important;
+}
+
+.book-page.page-active .s3-flora-bottom,
+.book-page.page-active .band-right {
+  transform: translate(0, 0) scale(1) !important;
+}
+
+/* Quando a página não está ativa (anterior ou próxima), as flores se recolhem levemente para os cantos */
+.book-page:not(.page-active) .s3-flora-top,
+.book-page:not(.page-active) .band-left {
+  transform: translate(-10%, -10%) scale(0.9) !important;
+  opacity: 0.7 !important;
+}
+
+.book-page:not(.page-active) .s3-flora-bottom,
+.book-page:not(.page-active) .band-right {
+  transform: translate(10%, 10%) scale(0.9) !important;
+  opacity: 0.7 !important;
+}
