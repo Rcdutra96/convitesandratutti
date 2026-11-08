@@ -264,4 +264,49 @@ document.addEventListener('DOMContentLoaded', () => {
       prevPage();
     }
   });
+
+  // ===================================================
+  // ELEMENTO DINÂMICO: PARTÍCULAS DOURADAS FLUTUANTES
+  // ===================================================
+  const initGoldenParticles = () => {
+    if (!bookContainer) return;
+
+    let particlesContainer = document.querySelector('.particles-container');
+    if (!particlesContainer) {
+      particlesContainer = document.createElement('div');
+      particlesContainer.className = 'particles-container';
+      particlesContainer.setAttribute('aria-hidden', 'true');
+      bookContainer.prepend(particlesContainer);
+    }
+
+    const particleCount = 18; // Entre 15 e 20 partículas leves
+    particlesContainer.innerHTML = '';
+
+    for (let i = 0; i < particleCount; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+
+      const left = Math.random() * 96 + 2; // 2% a 98%
+      const startTop = Math.random() * 80 + 20; // 20% a 100%
+      const duration = (Math.random() * 5 + 6).toFixed(1); // 6s a 11s
+      const delay = (Math.random() * 7).toFixed(1); // 0s a 7s
+      const driftX = (Math.random() * 24 - 12).toFixed(0); // -12px a +12px
+      const maxOpacity = (Math.random() * 0.4 + 0.45).toFixed(2); // 0.45 a 0.85
+      const size = (Math.random() * 2 + 2).toFixed(1); // 2px a 4px
+
+      p.style.left = `${left}%`;
+      p.style.top = `${startTop}%`;
+      p.style.width = `${size}px`;
+      p.style.height = `${size}px`;
+      p.style.setProperty('--p-duration', `${duration}s`);
+      p.style.setProperty('--p-delay', `${delay}s`);
+      p.style.setProperty('--p-drift-x', `${driftX}px`);
+      p.style.setProperty('--p-max-opacity', maxOpacity);
+
+      particlesContainer.appendChild(p);
+    }
+  };
+
+  initGoldenParticles();
+
 });

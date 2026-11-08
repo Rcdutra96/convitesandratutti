@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#FAF9F6">
+  <title>Convite de Casamento | T &amp; S</title>
+  <meta name="description" content="Convite digital de casamento - T & S - Fevereiro de 2027">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Great+Vibes&family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-opened">
+
+  <!-- Definições SVG reutilizáveis (flores e folhas) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="gradGold" cx="35%" cy="30%" r="80%">
+        <stop offset="0%" stop-color="#F3E5AB"/>
+        <stop offset="45%" stop-color="#D4AF37"/>
+        <stop offset="100%" stop-color="#8A6623"/>
+      </radialGradient>
+      <radialGradient id="gradMagenta" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#7A1648"/>
+        <stop offset="100%" stop-color="#AD1457"/>
+      </radialGradient>
+      <radialGradient id="gradRose" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F4A9B8"/>
+        <stop offset="100%" stop-color="#F9D5DC"/>
+      </radialGradient>
+      <radialGradient id="gradWine" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#3E0626"/>
+        <stop offset="100%" stop-color="#5E0B3B"/>
+      </radialGradient>
+
+      <!-- Folha -->
+      <symbol id="leaf" viewBox="0 0 40 90">
+        <path d="M20 88 C2 60 4 25 20 2 C36 25 38 60 20 88Z" fill="#3F6249"/>
+        <path d="M20 86 L20 10" stroke="#2E4A36" stroke-width="1.2" fill="none"/>
+      </symbol>
+
+      <!-- Flor de pétalas (cor vem de fill herdado via currentColor) -->
+      <symbol id="bloom" viewBox="-50 -50 100 100">
+        <g fill="currentColor">
+          <ellipse cx="0" cy="-24" rx="15" ry="26"/>
+          <ellipse cx="0" cy="-24" rx="15" ry="26" transform="rotate(60)"/>
+          <ellipse cx="0" cy="-24" rx="15" ry="26" transform="rotate(120)"/>
+          <ellipse cx="0" cy="-24" rx="15" ry="26" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-24" rx="15" ry="26" transform="rotate(240)"/>
+          <ellipse cx="0" cy="-24" rx="15" ry="26" transform="rotate(300)"/>
+        </g>
+        <circle r="11" fill="#D4AF37" opacity="0.9"/>
+        <circle r="5" fill="#8A6623"/>
+      </symbol>
+
+      <!-- Rosa/peônia (camadas concêntricas) -->
+      <symbol id="rose" viewBox="-50 -50 100 100">
+        <circle r="46" fill="currentColor"/>
+        <circle r="34" fill="#fff" opacity="0.14"/>
+        <path d="M-26 0 A26 26 0 0 1 26 0" fill="none" stroke="#000" stroke-opacity="0.18" stroke-width="2"/>
+        <circle r="22" fill="#000" opacity="0.1"/>
+        <path d="M-14 4 A14 14 0 0 0 14 4" fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="2"/>
+        <circle r="8" fill="#000" opacity="0.18"/>
+      </symbol>
+
+      <!-- Arranjo grande de canto (desenhado para o canto superior esquerdo) -->
+      <symbol id="floralCorner" viewBox="0 0 300 300">
+        <!-- folhas -->
+        <use href="#leaf" x="150" y="10" width="40" height="95" transform="rotate(-20 170 60)"/>
+        <use href="#leaf" x="205" y="60" width="38" height="90" transform="rotate(55 224 100)"/>
+        <use href="#leaf" x="20" y="150" width="38" height="92" transform="rotate(-70 40 190)"/>
+        <use href="#leaf" x="95" y="150" width="34" height="85" transform="rotate(25 110 190)"/>
+        <use href="#leaf" x="60" y="195" width="30" height="75" transform="rotate(-35 75 230)"/>
+        <use href="#leaf" x="190" y="115" width="30" height="75" transform="rotate(95 205 150)"/>
+        <!-- flores -->
+        <use href="#rose"  x="20"  y="20"  width="130" height="130" style="color:#AD1457"/>
+        <use href="#bloom" x="125" y="10"  width="90"  height="90"  style="color:#F4B6C2"/>
+        <use href="#rose"  x="10"  y="125" width="95"  height="95"  style="color:#5E0B3B"/>
+        <use href="#bloom" x="95"  y="105" width="80"  height="80"  style="color:#E8719A"/>
+        <use href="#rose"  x="165" y="75"  width="62"  height="62"  style="color:#F4A9B8"/>
+        <use href="#bloom" x="60"  y="200" width="58"  height="58"  style="color:#F9D5DC"/>
+        <use href="#rose"  x="205" y="25"  width="48"  height="48"  style="color:#7A1648"/>
+        <!-- botões dourados -->
+        <circle cx="175" cy="160" r="4" fill="#D4AF37"/>
+        <circle cx="130" cy="215" r="3.5" fill="#D4AF37"/>
+        <circle cx="240" cy="95" r="3.5" fill="#D4AF37"/>
+        <circle cx="265" cy="50" r="3" fill="#D4AF37"/>
+      </symbol>
+
+      <!-- Pequeno arranjo que abraça o lacre -->
+      <symbol id="sealEmbrace" viewBox="0 0 190 80">
+        <use href="#leaf" x="8"   y="8"  width="22" height="60" transform="rotate(-75 19 38)"/>
+        <use href="#leaf" x="38"  y="20" width="20" height="55" transform="rotate(-40 48 48)"/>
+        <use href="#leaf" x="132" y="20" width="20" height="55" transform="rotate(40 142 48)"/>
+        <use href="#leaf" x="160" y="8"  width="22" height="60" transform="rotate(75 171 38)"/>
+        <use href="#leaf" x="86"  y="30" width="18" height="48" transform="rotate(180 95 54)"/>
+        <use href="#rose"  x="55"  y="14" width="38" height="38" style="color:#AD1457"/>
+        <use href="#bloom" x="92"  y="16" width="36" height="36" style="color:#F4B6C2"/>
+        <use href="#rose"  x="30"  y="32" width="26" height="26" style="color:#5E0B3B"/>
+        <use href="#rose"  x="132" y="32" width="26" height="26" style="color:#F4A9B8"/>
+        <use href="#bloom" x="80"  y="40" width="28" height="28" style="color:#E8719A"/>
+      </symbol>
+
+      <!-- Ornamento dourado -->
+      <symbol id="ornament" viewBox="0 0 120 16">
+        <path d="M2 8 H48 M72 8 H118" stroke="#B89047" stroke-width="1" fill="none"/>
+        <path d="M60 1 L66 8 L60 15 L54 8Z" fill="none" stroke="#B89047" stroke-width="1.2"/>
+        <circle cx="60" cy="8" r="2" fill="#D4AF37"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Loader -->
+  <div class="loader-overlay" id="loader" aria-live="polite">
+    <div class="loader-monogram">T &amp; S</div>
+    <div class="loader-line"></div>
+  </div>
+
+  <!-- Textura de papel -->
+  <div class="paper-texture" aria-hidden="true"></div>
+  <svg class="paper-grain-svg" aria-hidden="true">
+    <filter id="paperNoise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.36  0 0 0 0 0.28  0 0 0 0.22 0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#paperNoise)"/>
+  </svg>
+
+  <!-- TELA 2: Convite interno (fica atrás das abas) -->
+    <!-- TELA 2 a 6: Livro de Páginas Interativo (após abertura) -->
+  <main class="invitation-interior" id="invitation">
+    <!-- Botão de Som Mute/Unmute -->
+    <button type="button" class="sound-toggle-btn" id="soundToggleBtn" aria-label="Ativar ou desativar som" title="Som">
+      <svg class="sound-icon sound-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+      </svg>
+      <svg class="sound-icon sound-icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" y1="9" x2="17" y2="15"></line>
+        <line x1="17" y1="9" x2="23" y2="15"></line>
+      </svg>
+    </button>
+
+    <!-- Contêiner do Livro -->
+    <div id="bookContainer" class="book-container">
+      <!-- Página 1 (Save the Date) -->
+      <section class="book-page page-screen2" data-page="0">
+        <div class="screen2">
+      <header class="floral-band floral-band-top" aria-hidden="true">
+        <img class="band-flora band-left" src="flora_top.png" alt="">
+        <img class="band-flora band-right" src="flora_top.png" alt="">
+      </header>
+
+      <section class="screen2-content">
+        <h2 class="save-date">SAVE <span class="the">the</span> DATE</h2>
+        <p class="date-line">06.FEVEREIRO.2027</p>
+
+        <figure class="photo-frame">
+          <img src="https://via.placeholder.com/400x500" alt="Casal" width="400" height="500"
+               onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22500%22%3E%3Crect width=%22400%22 height=%22500%22 fill=%22%23efe6e0%22/%3E%3Ctext x=%22200%22 y=%22255%22 font-size=%2222%22 text-anchor=%22middle%22 fill=%22%23B89047%22 font-family=%22sans-serif%22%3EFoto do casal%3C/text%3E%3C/svg%3E'">
+        </figure>
+
+        <p class="love-quote">O amor não se mede com o tempo, mas pelo que se constrói com ele</p>
+        <p class="names">Tutti <span class="names-amp">&amp;</span> Sandra</p>
+        <p class="place">NOVA PRATA DO IGUAÇU</p>
+      </section>
+
+      <footer class="floral-band floral-band-bottom" aria-hidden="true">
+        <img class="band-flora band-left" src="flora_bottom.png" alt="">
+        <img class="band-flora band-right" src="flora_bottom.png" alt="">
+      </footer>
+    </div>
+      </section>
+
+      <!-- Página 2 (Convite Oficial) -->
+      <section class="book-page page-screen3" data-page="1">
+        <section class="screen3" id="convite-oficial">
+      <img class="s3-flora s3-flora-top" src="flora_top.png" alt="" aria-hidden="true">
+      <img class="s3-flora s3-flora-bottom" src="flora_bottom.png" alt="" aria-hidden="true">
+
+      <div class="s3-content">
+        <h2 class="s3-monogram">T&amp;S</h2>
+        <p class="s3-quote">O amor não se mede com o tempo, mas pelo que se constrói com ele.</p>
+        <p class="s3-text">com a bênção de Deus e a presença<br>de nossos filhos,</p>
+
+        <div class="s3-names">
+          <span class="s3-name">Sandra Maria Santi</span>
+          <span class="s3-amp">&amp;</span>
+          <span class="s3-name">Jorge de Oliveira (Tutti)</span>
+        </div>
+
+        <p class="s3-text">é com imenso prazer que convidamos<br>você e sua família para celebrar<br>o nosso casamento.</p>
+
+        <div class="s3-when">
+          <p class="s3-date">Sábado, 06 de Fevereiro de 2027</p>
+          <p class="s3-place">Nova Prata do Iguaçu - PR</p>
+        </div>
+      </div>
+    </section>
+      </section>
+
+      <!-- Página 3 (Cerimônia e Festa) -->
+      <section class="book-page page-screen4" data-page="2">
+        <section class="screen4" id="cerimonia-festa">
+      <img class="s3-flora s3-flora-top" src="flora_top.png" alt="" aria-hidden="true">
+      <img class="s3-flora s3-flora-bottom" src="flora_bottom.png" alt="" aria-hidden="true">
+
+      <div class="s4-content">
+        <article class="s4-block">
+          <svg class="s4-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M32 4v8M28 8h8"/>
+            <path d="M32 12L18 24v18h28V24L32 12z"/>
+            <path d="M26 42V32a6 6 0 0 1 12 0v10"/>
+            <path d="M18 24H10v18h8M46 24h8v18h-8"/>
+            <path d="M6 42h52"/>
+            <circle cx="27" cy="53" r="5.5"/>
+            <circle cx="37" cy="53" r="5.5"/>
+          </svg>
+          <h2 class="s4-title">A Cerimônia</h2>
+          <p class="s4-place">Paróquia Nossa Senhora do Bom Parto</p>
+          <p class="s4-time">início da cerimônia as 17h</p>
+          <p class="s4-address">Endereço da paróquia (a definir)<br>Nova Prata do Iguaçu - PR</p>
+          <a class="s4-btn" href="https://maps.google.com/?q=Par%C3%B3quia+Nossa+Senhora+do+Bom+Parto+Nova+Prata+do+Igua%C3%A7u" target="_blank" rel="noopener">VER LOCALIZAÇÃO NO GPS</a>
+        </article>
+
+        <article class="s4-block s4-block-party">
+          <h2 class="s4-title">A Festa</h2>
+          <p class="s4-place">Restaurante Aguia/ Maninho</p>
+          <p class="s4-address">Endereço do restaurante (a definir)<br>Nova Prata do Iguaçu - PR</p>
+          <a class="s4-btn" href="https://maps.google.com/?q=Restaurante+Aguia+Maninho+Nova+Prata+do+Igua%C3%A7u" target="_blank" rel="noopener">
+            <svg class="s4-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21l5-13 8 8-13 5z"/>
+              <path d="M8 8l8 8"/>
+              <path d="M14 4c0 2 2 2 2 4M18 9c1.5 0 2 1 3.5 1M17 3v2M21 6h-2"/>
+            </svg>
+            <span>VER LOCALIZAÇÃO NO GPS</span>
+          </a>
+        </article>
+
+        <p class="s4-monogram">T &amp; S</p>
+      </div>
+    </section>
+      </section>
+
+      <!-- Página 4 (Confirmação e Paleta) -->
+      <section class="book-page page-screen5" data-page="3">
+        <section class="screen5" id="confirmacao">
+      <img class="s3-flora s3-flora-top" src="flora_top.png" alt="" aria-hidden="true">
+      <img class="s3-flora s3-flora-bottom" src="flora_bottom.png" alt="" aria-hidden="true">
+
+      <div class="s5-content">
+        <header class="s5-head">
+          <svg class="s4-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="8" y="12" width="48" height="44" rx="5"/>
+            <path d="M8 24h48M20 6v10M44 6v10"/>
+            <path d="M32 50s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z"/>
+          </svg>
+          <h2 class="s5-title">Confirmação<br>de Presença</h2>
+          <p class="s5-intro">A sua presença tornará o nosso dia ainda mais especial e inesquecível!</p>
+        </header>
+
+        <div class="s5-box">
+          <p class="s5-box-text">Por favor, confirme sua presença até o dia</p>
+          <p class="s5-deadline">10 de Janeiro de 2027</p>
+          <a class="s5-btn" href="https://wa.me/55DDDNUMERO?text=Confirmo%20minha%20presenca%20no%20seu%20casamento!" target="_blank" rel="noopener">CONFIRMAR PRESENÇA VIA WHATSAPP</a>
+        </div>
+
+        <div class="s5-divider" aria-hidden="true">
+          <span class="s5-line"></span>
+          <svg viewBox="0 0 40 24" width="40" height="24" fill="none" stroke="#4A6B53" stroke-width="1.2" stroke-linecap="round">
+            <path d="M20 22V10"/>
+            <path d="M20 14C13 14 8 10 7 3c7 0 12 3 13 11z" fill="#4A6B53" fill-opacity="0.35"/>
+            <path d="M20 14c7 0 12-4 13-11-7 0-12 3-13 11z" fill="#4A6B53" fill-opacity="0.35"/>
+          </svg>
+          <span class="s5-line"></span>
+        </div>
+
+        <section class="s5-request" aria-labelledby="pedidoTitulo">
+          <h3 class="s5-request-title" id="pedidoTitulo">Um pedido com carinho:</h3>
+          <p class="s5-request-text">Pedimos a gentileza de reservar os tons de branco e off-white para a noiva, e os tons de <strong class="fucsia">fúcsia</strong> para as nossas madrinhas.</p>
+          <div class="s5-palette" role="img" aria-label="Paleta de tons de fúcsia">
+            <span class="swatch" style="background:#C2185B"></span>
+            <span class="swatch" style="background:#AD1457"></span>
+            <span class="swatch" style="background:#880E4F"></span>
+            <span class="swatch" style="background:#560027"></span>
+          </div>
+          <p class="s5-caption">Paleta das Madrinhas</p>
+        </section>
+      </div>
+    </section>
+      </section>
+
+      <!-- Página 5 (Encerramento) -->
+      <section class="book-page page-screen6" data-page="4">
+        <section class="screen6" id="encerramento">
+      <img class="s3-flora s3-flora-top" src="flora_top.png" alt="" aria-hidden="true">
+      <img class="s3-flora s3-flora-bottom" src="flora_bottom.png" alt="" aria-hidden="true">
+
+      <div class="s6-content">
+        <svg class="s4-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <g transform="rotate(-20 32 32)">
+            <circle cx="23" cy="34" r="14"/>
+            <circle cx="23" cy="34" r="10.5" opacity="0.6"/>
+            <path d="M19 15l4-6 4 6-4 4z"/>
+          </g>
+          <g transform="rotate(20 32 32)">
+            <circle cx="41" cy="34" r="14"/>
+            <circle cx="41" cy="34" r="10.5" opacity="0.6"/>
+          </g>
+        </svg>
+
+        <h2 class="s6-title">Esperamos<br>por vocês!</h2>
+        <p class="s6-text">Com carinho e alegria, esperamos vocês para celebrar este momento tão especial e único em nossas vidas.</p>
+
+        <div class="s6-footer">
+          <p class="s6-monogram">T&amp;S</p>
+          <p class="s6-date">06 . FEVEREIRO . 2027</p>
+        </div>
+      </div>
+    </section>
+      </section>
+    </div>
+
+    <!-- Botões de Navegação Lateral -->
+    <button type="button" class="nav-arrow nav-arrow-prev" id="prevPageBtn" aria-label="Página anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button type="button" class="nav-arrow nav-arrow-next" id="nextPageBtn" aria-label="Próxima página">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Indicador de Páginas (Pontinhos sutis) -->
+    <div class="page-indicators" id="pageIndicators" aria-hidden="true">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
+      <span class="dot" data-index="3"></span>
+      <span class="dot" data-index="4"></span>
+    </div>
+
+    <!-- Áudio de virada de página (MP3 pré-carregado) -->
+    <audio id="pageTurnSound" preload="auto">
+      <source src="page-turn.mp3" type="audio/mpeg">
+    </audio>
+  </main>
+
+  <!-- TELA 1: Envelope com duas abas (arte da image_0.png sem o lacre) -->
+  <!-- <div class="envelope-wrapper" id="envelopeWrapper">
+    <div class="flap flap-left left-flap" aria-hidden="true"></div>
+    <div class="flap flap-right right-flap" aria-hidden="true"></div>
+
+    <!-- Lacre + texto "CLIQUE PARA ABRIR": camada própria, acima das abas, inteiro -->
+    <button type="button" class="wax-seal-btn" id="waxSealBtn" aria-label="Clique para abrir o convite">
+      <span class="seal-half seal-half-left" aria-hidden="true"></span>
+      <span class="seal-half seal-half-right" aria-hidden="true"></span>
+      <span class="seal-ring" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  --> <!-- Símbolo do lacre de cera -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="waxSeal" viewBox="0 0 112 112">
+        <path d="M56 4 C70 2 80 10 90 14 C104 22 110 36 108 52 C112 68 104 84 92 94 C80 106 62 110 48 108 C30 108 14 98 8 82 C0 66 2 48 10 34 C18 18 36 6 56 4Z" fill="url(#gradGold)"/>
+        <circle cx="56" cy="56" r="40" fill="none" stroke="#8A6623" stroke-width="1.5" opacity="0.6"/>
+        <circle cx="56" cy="56" r="36" fill="none" stroke="#F3E5AB" stroke-width="1" opacity="0.7"/>
+        <text x="56" y="67" text-anchor="middle" font-family="Playfair Display, serif" font-size="32" font-weight="600" fill="#8A6623" opacity="0.55" transform="translate(1.2 1.2)">TS</text>
+        <text x="56" y="67" text-anchor="middle" font-family="Playfair Display, serif" font-size="32" font-weight="600" fill="#F3E5AB">TS</text>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="script.js"></script>
+<style>.invitation-interior{opacity:1!important;transform:none!important;}</style></body>
+</html>
