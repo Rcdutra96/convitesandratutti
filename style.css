@@ -2291,3 +2291,54 @@ body.is-opened .page-indicators {
   pointer-events: none !important;
   z-index: 90 !important;
 }
+
+
+/* ===================================================
+   AJUSTES RIGOROSOS: FLORES 20% MAIORES & SOBREPOSIÇÃO
+=================================================== */
+.s3-flora,
+.band-flora {
+  max-height: 29dvh !important;
+  max-width: 72vw !important;
+  width: auto !important;
+  object-fit: contain !important;
+  pointer-events: none !important;
+  z-index: 100 !important;
+}
+
+.screen2,
+.screen2 .floral-band,
+.screen2 .floral-band-top,
+.screen2 .floral-band-bottom {
+  z-index: 100 !important;
+  overflow: visible !important;
+}
+
+/* ===================================================
+   TIPOGRAFIA: TIMES NEW ROMAN
+=================================================== */
+.names,
+.s3-monogram,
+.s3-name,
+.s3-amp,
+.s4-monogram,
+.s5-monogram,
+.s6-monogram {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* ===================================================
+   AJUSTES ESPECÍFICOS NA PÁGINA 3
+=================================================== */
+.s3-content {
+  height: 100% !important;
+}
+
+.s3-name {
+  font-size: calc(clamp(1.05rem, 3dvh, 1.45rem) + 4px) !important;
+}
+
+.s3-when {
+  margin-top: auto !important;
+  padding-top: 4vh !important;
+}
