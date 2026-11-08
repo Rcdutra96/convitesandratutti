@@ -1803,7 +1803,8 @@ body.is-opened .page-indicators {
   justify-content: center !important;
   align-items: center !important;
   box-sizing: border-box !important;
-  padding: clamp(50px, 9dvh, 80px) clamp(16px, 4vw, 24px) !important;
+  /* Top: 9dvh, Right/Left: 54px (espaço das setas), Bottom: 12dvh (espaço dos dots) */
+  padding: clamp(50px, 9dvh, 70px) clamp(54px, 12vw, 70px) clamp(70px, 12dvh, 90px) !important;
 }
 
 .screen2 {
@@ -2143,4 +2144,55 @@ body.is-opened .page-indicators {
   font-size: 0.75rem;
   color: var(--text-muted);
   line-height: 1.4;
+}
+
+
+
+/* ===================================================
+   ZONAS SEGURAS (SAFE AREAS): SETAS E DOTS
+=================================================== */
+.screen3,
+.screen4,
+.screen5,
+.screen6 {
+  min-height: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  /* Top: 9dvh, Right/Left: 54px (espaço das setas), Bottom: 12dvh (espaço dos dots) */
+  padding: clamp(50px, 9dvh, 70px) clamp(54px, 12vw, 70px) clamp(70px, 12dvh, 90px) !important;
+}
+
+.screen2-content {
+  gap: clamp(10px, 2.2dvh, 26px) !important;
+  position: relative !important;
+  z-index: 5 !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  /* Padding lateral generoso para proteger das setas */
+  padding: 8px clamp(54px, 12vw, 70px) !important;
+}
+
+.s3-content,
+.s4-content,
+.s5-content,
+.s6-content {
+  max-width: 460px !important; /* Aumentado de 420 para 460 */
+  padding: 0 !important;
+}
+
+.s3-name,
+.s4-place {
+  font-size: clamp(0.95rem, 2.8dvh, 1.35rem) !important;
+  line-height: 1.25 !important;
 }
