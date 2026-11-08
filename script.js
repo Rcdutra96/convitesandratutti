@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let hasUserInteracted = false;
   let isOpening = false;
 
+  // Pré-carregamento imediato do áudio para eliminar qualquer delay na virada de página
+  if (pageTurnSound) {
+    pageTurnSound.preload = 'auto';
+    pageTurnSound.load();
+  }
+
   // Oculta o loader rapidamente após fontes/DOM estarem prontos
   const hideLoader = () => {
     if (loader) {
@@ -33,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setTimeout(hideLoader, 1200);
 
-  // Reproduzir som de virar página
+  // Reproduzir som de virar página de forma instantânea
   const playPageTurnSound = () => {
     if (isSoundMuted || !hasUserInteracted || !pageTurnSound) return;
     try {
@@ -127,9 +133,17 @@ document.addEventListener('DOMContentLoaded', () => {
     isOpening = true;
     hasUserInteracted = true;
 
-    // Pré-carrega áudio na primeira interação do usuário
+    // "Acorda" e pré-carrega o áudio no primeiro gesto do usuário
     if (pageTurnSound) {
       pageTurnSound.load();
+      // Executa um play/pause instantâneo para desbloquear o buffer de áudio no iOS / Android
+      const unlockAudio = pageTurnSound.play();
+      if (unlockAudio !== undefined) {
+        unlockAudio.then(() => {
+          pageTurnSound.pause();
+          pageTurnSound.currentTime = 0;
+        }).catch(() => {});
+      }
     }
 
     // 1. Quebra o lacre de cera e esconde prompt
@@ -155,15 +169,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (prevPageBtn) {
     prevPageBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      nextPage(); // ou prevPage
       prevPage();
     });
   }
 
+  // Garantindo handler correto de prev e next
+  if (prevPageBtn) {
+    prevPageBtn.onclick = (e) => {
+      e.stopPropagation();
+      prevPage();
+    };
+  }
+
   if (nextPageBtn) {
-    nextPageBtn.addEventListener('click', (e) => {
+    nextPageBtn.onclick = (e) => {
       e.stopPropagation();
       nextPage();
-    });
+    };
   }
 
   // Clique nos dots indicadores
