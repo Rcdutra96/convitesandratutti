@@ -1001,3 +1001,53 @@ html, body, body.is-opened { overflow: hidden; }
   letter-spacing: 3px;
   color: var(--text-body);
 }
+
+/* ==========================================
+   LACRE CENTRAL INDEPENDENTE (acima das abas, sem cortes)
+========================================== */
+.flap::before { background-image: url('image_base.png'); }
+.flap-left, .flap-right { border: none; }
+
+/* Centro do lacre na arte: (287, 514) de 572x1024 -> offset de 1u, 2u do centro da tela */
+.wax-seal-btn {
+  position: absolute;
+  top: calc(50% + var(--u) * 2);
+  left: calc(50% + var(--u));
+  transform: translate(-50%, -50%);
+  width: calc(var(--u) * 164);
+  height: calc(var(--u) * 164);
+  z-index: 100;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  animation: sealPulse 2.6s ease-in-out infinite;
+}
+.wax-seal-btn:hover, .wax-seal-btn:active { transform: translate(-50%, -50%); }
+
+/* Recorte do lacre + texto curvado a partir da image_0.png (mesmos pixels da arte) */
+.seal-half {
+  position: absolute;
+  width: calc(var(--u) * 260);
+  height: calc(var(--u) * 230);
+  left: calc(50% - var(--u) * 130);
+  top: calc(50% - var(--u) * 115);
+  background: url('image_0.png') calc(var(--u) * -157) calc(var(--u) * -399) / calc(var(--u) * 572) calc(var(--u) * 1024) no-repeat;
+  -webkit-mask-image: radial-gradient(ellipse closest-side, #000 86%, transparent 100%);
+          mask-image: radial-gradient(ellipse closest-side, #000 86%, transparent 100%);
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.7s ease;
+}
+.seal-half-left  { clip-path: inset(0 50% 0 0); }
+.seal-half-right { clip-path: inset(0 0 0 50%); }
+
+.seal-ring { inset: 6%; z-index: 2; }
+
+/* Quebra do lacre: metades se afastam e somem; texto desaparece junto */
+.envelope-wrapper.seal-breaking .wax-seal-btn { animation: none; opacity: 1; pointer-events: none; }
+.envelope-wrapper.seal-breaking .seal-ring { display: none; }
+.envelope-wrapper.seal-breaking .seal-half-left  { transform: translate(calc(var(--u) * -34), calc(var(--u) * 10)) rotate(-12deg); opacity: 0; }
+.envelope-wrapper.seal-breaking .seal-half-right { transform: translate(calc(var(--u) * 34), calc(var(--u) * 10)) rotate(12deg); opacity: 0; }
+
+.wax-seal-btn { animation: none; } /* o "pulse" fica no anel dourado, sem sobrescrever o translate */

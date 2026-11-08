@@ -44,12 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       envelopeWrapper.classList.add('is-opening');
       document.body.classList.add('is-opened');
-    }, 280);
+    }, 650);
 
     // 3. Desativa ponteiros da camada do envelope após a transição de 1.5s
     setTimeout(() => {
       envelopeWrapper.classList.add('opened');
-    }, 1800);
+    }, 2300);
   };
 
   // Função para rever a animação do envelope

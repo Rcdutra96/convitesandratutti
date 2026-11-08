@@ -157,12 +157,16 @@
     </div>
   </main>
 
-  <!-- TELA 1: Envelope com duas abas (arte da image_0.png dividida ao meio) -->
+  <!-- TELA 1: Envelope com duas abas (arte da image_0.png sem o lacre) -->
   <div class="envelope-wrapper" id="envelopeWrapper">
-    <div class="flap flap-left" aria-hidden="true"></div>
-    <div class="flap flap-right" aria-hidden="true"></div>
+    <div class="flap flap-left left-flap" aria-hidden="true"></div>
+    <div class="flap flap-right right-flap" aria-hidden="true"></div>
+
+    <!-- Lacre + texto "CLIQUE PARA ABRIR": camada própria, acima das abas, inteiro -->
     <button type="button" class="wax-seal-btn" id="waxSealBtn" aria-label="Clique para abrir o convite">
-      <span class="seal-ring"></span>
+      <span class="seal-half seal-half-left" aria-hidden="true"></span>
+      <span class="seal-half seal-half-right" aria-hidden="true"></span>
+      <span class="seal-ring" aria-hidden="true"></span>
     </button>
   </div>
 
