@@ -2,47 +2,254 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Convite - Sandra & Tutti</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #faf8f5;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      text-align: center;
-      padding: 20px;
-    }
-    .card {
-      background: #fff;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-      max-width: 480px;
-      width: 100%;
-    }
-    h1 {
-      color: #7d5a50;
-      font-size: 2.2rem;
-      margin-bottom: 8px;
-    }
-    p {
-      color: #666;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#FAF9F6">
+  <title>Convite de Casamento | T &amp; S</title>
+  <meta name="description" content="Convite digital de casamento - T & S - Fevereiro de 2027">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Great+Vibes&family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="card">
-    <h1>Sandra & Tutti</h1>
-    <p>O nosso convite está sendo preparado com muito carinho!</p>
-    <p>Em breve novidades por aqui. ✨</p>
+
+  <!-- Definições SVG reutilizáveis (flores e folhas) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="gradGold" cx="35%" cy="30%" r="80%">
+        <stop offset="0%" stop-color="#F3E5AB"/>
+        <stop offset="45%" stop-color="#D4AF37"/>
+        <stop offset="100%" stop-color="#8A6623"/>
+      </radialGradient>
+      <radialGradient id="gradMagenta" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#7A1648"/>
+        <stop offset="100%" stop-color="#AD1457"/>
+      </radialGradient>
+      <radialGradient id="gradRose" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F4A9B8"/>
+        <stop offset="100%" stop-color="#F9D5DC"/>
+      </radialGradient>
+      <radialGradient id="gradWine" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#3E0626"/>
+        <stop offset="100%" stop-color="#5E0B3B"/>
+      </radialGradient>
+
+      <!-- Folha -->
+      <symbol id="leaf" viewBox="0 0 40 90">
+        <path d="M20 88 C2 60 4 25 20 2 C36 25 38 60 20 88Z" fill="#3F6249"/>
+        <path d="M20 86 L20 10" stroke="#2E4A36" stroke-width="1.2" fill="none"/>
+      </symbol>
+
+      <!-- Flor de pétalas (cor vem de fill herdado via currentColor) -->
+      <symbol id="bloom" viewBox="-50 -50 100 100">
+        <g fill="currentColor">
+          <ellipse cx="0" cy="-24" rx="15" ry="26"/>
+          <ellipse cx="0" cy="-24" rx="15" ry="26" transform="rotate(60)"/>
+          <ellipse cx="0" cy="-24" rx="15" ry="26" transform="rotate(120)"/>
+          <ellipse cx="0" cy="-24" rx="15" ry="26" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-24" rx="15" ry="26" transform="rotate(240)"/>
+          <ellipse cx="0" cy="-24" rx="15" ry="26" transform="rotate(300)"/>
+        </g>
+        <circle r="11" fill="#D4AF37" opacity="0.9"/>
+        <circle r="5" fill="#8A6623"/>
+      </symbol>
+
+      <!-- Rosa/peônia (camadas concêntricas) -->
+      <symbol id="rose" viewBox="-50 -50 100 100">
+        <circle r="46" fill="currentColor"/>
+        <circle r="34" fill="#fff" opacity="0.14"/>
+        <path d="M-26 0 A26 26 0 0 1 26 0" fill="none" stroke="#000" stroke-opacity="0.18" stroke-width="2"/>
+        <circle r="22" fill="#000" opacity="0.1"/>
+        <path d="M-14 4 A14 14 0 0 0 14 4" fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="2"/>
+        <circle r="8" fill="#000" opacity="0.18"/>
+      </symbol>
+
+      <!-- Arranjo grande de canto (desenhado para o canto superior esquerdo) -->
+      <symbol id="floralCorner" viewBox="0 0 300 300">
+        <!-- folhas -->
+        <use href="#leaf" x="150" y="10" width="40" height="95" transform="rotate(-20 170 60)"/>
+        <use href="#leaf" x="205" y="60" width="38" height="90" transform="rotate(55 224 100)"/>
+        <use href="#leaf" x="20" y="150" width="38" height="92" transform="rotate(-70 40 190)"/>
+        <use href="#leaf" x="95" y="150" width="34" height="85" transform="rotate(25 110 190)"/>
+        <use href="#leaf" x="60" y="195" width="30" height="75" transform="rotate(-35 75 230)"/>
+        <use href="#leaf" x="190" y="115" width="30" height="75" transform="rotate(95 205 150)"/>
+        <!-- flores -->
+        <use href="#rose"  x="20"  y="20"  width="130" height="130" style="color:#AD1457"/>
+        <use href="#bloom" x="125" y="10"  width="90"  height="90"  style="color:#F4B6C2"/>
+        <use href="#rose"  x="10"  y="125" width="95"  height="95"  style="color:#5E0B3B"/>
+        <use href="#bloom" x="95"  y="105" width="80"  height="80"  style="color:#E8719A"/>
+        <use href="#rose"  x="165" y="75"  width="62"  height="62"  style="color:#F4A9B8"/>
+        <use href="#bloom" x="60"  y="200" width="58"  height="58"  style="color:#F9D5DC"/>
+        <use href="#rose"  x="205" y="25"  width="48"  height="48"  style="color:#7A1648"/>
+        <!-- botões dourados -->
+        <circle cx="175" cy="160" r="4" fill="#D4AF37"/>
+        <circle cx="130" cy="215" r="3.5" fill="#D4AF37"/>
+        <circle cx="240" cy="95" r="3.5" fill="#D4AF37"/>
+        <circle cx="265" cy="50" r="3" fill="#D4AF37"/>
+      </symbol>
+
+      <!-- Pequeno arranjo que abraça o lacre -->
+      <symbol id="sealEmbrace" viewBox="0 0 190 80">
+        <use href="#leaf" x="8"   y="8"  width="22" height="60" transform="rotate(-75 19 38)"/>
+        <use href="#leaf" x="38"  y="20" width="20" height="55" transform="rotate(-40 48 48)"/>
+        <use href="#leaf" x="132" y="20" width="20" height="55" transform="rotate(40 142 48)"/>
+        <use href="#leaf" x="160" y="8"  width="22" height="60" transform="rotate(75 171 38)"/>
+        <use href="#leaf" x="86"  y="30" width="18" height="48" transform="rotate(180 95 54)"/>
+        <use href="#rose"  x="55"  y="14" width="38" height="38" style="color:#AD1457"/>
+        <use href="#bloom" x="92"  y="16" width="36" height="36" style="color:#F4B6C2"/>
+        <use href="#rose"  x="30"  y="32" width="26" height="26" style="color:#5E0B3B"/>
+        <use href="#rose"  x="132" y="32" width="26" height="26" style="color:#F4A9B8"/>
+        <use href="#bloom" x="80"  y="40" width="28" height="28" style="color:#E8719A"/>
+      </symbol>
+
+      <!-- Ornamento dourado -->
+      <symbol id="ornament" viewBox="0 0 120 16">
+        <path d="M2 8 H48 M72 8 H118" stroke="#B89047" stroke-width="1" fill="none"/>
+        <path d="M60 1 L66 8 L60 15 L54 8Z" fill="none" stroke="#B89047" stroke-width="1.2"/>
+        <circle cx="60" cy="8" r="2" fill="#D4AF37"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Loader -->
+  <div class="loader-overlay" id="loader" aria-live="polite">
+    <div class="loader-monogram">T &amp; S</div>
+    <div class="loader-line"></div>
   </div>
+
+  <!-- Textura de papel -->
+  <div class="paper-texture" aria-hidden="true"></div>
+  <svg class="paper-grain-svg" aria-hidden="true">
+    <filter id="paperNoise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.36  0 0 0 0 0.28  0 0 0 0.22 0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#paperNoise)"/>
+  </svg>
+
+  <!-- TELA 2: Convite interno (fica atrás das abas) -->
+  <main class="invitation-interior" id="invitation">
+    <article class="invitation-card">
+      <svg class="inner-floral inner-floral-tl" viewBox="0 0 300 300" aria-hidden="true"><use href="#floralCorner"/></svg>
+      <svg class="inner-floral inner-floral-br" viewBox="0 0 300 300" aria-hidden="true" style="transform: rotate(180deg)"><use href="#floralCorner"/></svg>
+
+      <div class="card-content">
+        <div class="inner-monogram" aria-label="T e S">T <span class="amp">&amp;</span> S</div>
+        <svg class="gold-ornament" viewBox="0 0 120 16" aria-hidden="true"><use href="#ornament"/></svg>
+
+        <p class="blessing-text">Com a bênção de seus pais,<br>convidam para o seu casamento</p>
+
+        <h1 class="couple-names">
+          Tutti <span class="couple-amp">&amp;</span> Sandra
+        </h1>
+
+        <p class="invitation-phrase">“O amor é a ponte entre duas almas.”</p>
+
+        <section class="event-details" aria-label="Detalhes do evento">
+          <div class="date-highlight">
+            <div class="date-month-year">Fevereiro de 2027</div>
+          </div>
+          <div class="info-cards-grid">
+            <div class="info-card">
+              <svg class="info-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <span class="info-card-label">Horário</span>
+              <span class="info-card-value">A definir</span>
+              <span class="info-card-sub">Em breve confirmaremos</span>
+            </div>
+            <div class="info-card">
+              <svg class="info-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <span class="info-card-label">Local</span>
+              <span class="info-card-value">A definir</span>
+              <span class="info-card-sub">Em breve confirmaremos</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="action-buttons">
+          <a href="#" class="btn-elegant btn-primary-wine" id="openRsvpBtn">Confirmar Presença</a>
+          <a href="#" class="btn-elegant btn-secondary-gold" id="openGiftsBtn">Lista de Presentes</a>
+        </div>
+
+        <button type="button" class="replay-envelope-btn" id="replayEnvelopeBtn">Rever abertura</button>
+      </div>
+    </article>
+  </main>
+
+  <!-- TELA 1: Envelope com duas abas -->
+  <div class="envelope-wrapper" id="envelopeWrapper">
+    <div class="flap flap-left">
+      <svg class="floral-corner floral-top-left" viewBox="0 0 300 300" aria-hidden="true"><use href="#floralCorner"/></svg>
+      <span class="envelope-monogram-part monogram-t" aria-hidden="true">T</span>
+      <span class="monogram-amp-half" aria-hidden="true">&amp;</span>
+    </div>
+    <div class="flap flap-right">
+      <svg class="floral-corner floral-bottom-right" viewBox="0 0 300 300" aria-hidden="true" style="transform: rotate(180deg)"><use href="#floralCorner"/></svg>
+      <span class="envelope-monogram-part monogram-s" aria-hidden="true">S</span>
+    </div>
+
+    <div class="seal-stage">
+      <svg class="curved-prompt-svg" viewBox="0 0 210 75" aria-hidden="true">
+        <path id="promptArc" d="M12 66 A93 93 0 0 1 198 66" fill="none"/>
+        <text class="curved-prompt-text" text-anchor="middle">
+          <textPath href="#promptArc" startOffset="50%">Clique para abrir</textPath>
+        </text>
+      </svg>
+
+      <button type="button" class="wax-seal-btn" id="waxSealBtn" aria-label="Abrir convite">
+        <svg class="seal-half seal-half-left" viewBox="0 0 112 112" aria-hidden="true"><use href="#waxSeal"/></svg>
+        <svg class="seal-half seal-half-right" viewBox="0 0 112 112" aria-hidden="true"><use href="#waxSeal"/></svg>
+      </button>
+
+      <svg class="seal-floral-embrace" viewBox="0 0 190 80" aria-hidden="true"><use href="#sealEmbrace"/></svg>
+    </div>
+  </div>
+
+  <!-- Símbolo do lacre de cera -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="waxSeal" viewBox="0 0 112 112">
+        <path d="M56 4 C70 2 80 10 90 14 C104 22 110 36 108 52 C112 68 104 84 92 94 C80 106 62 110 48 108 C30 108 14 98 8 82 C0 66 2 48 10 34 C18 18 36 6 56 4Z" fill="url(#gradGold)"/>
+        <circle cx="56" cy="56" r="40" fill="none" stroke="#8A6623" stroke-width="1.5" opacity="0.6"/>
+        <circle cx="56" cy="56" r="36" fill="none" stroke="#F3E5AB" stroke-width="1" opacity="0.7"/>
+        <text x="56" y="67" text-anchor="middle" font-family="Playfair Display, serif" font-size="32" font-weight="600" fill="#8A6623" opacity="0.55" transform="translate(1.2 1.2)">TS</text>
+        <text x="56" y="67" text-anchor="middle" font-family="Playfair Display, serif" font-size="32" font-weight="600" fill="#F3E5AB">TS</text>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Modal: Confirmar Presença -->
+  <div class="modal-backdrop" id="rsvpModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-labelledby="rsvpTitle">
+      <button class="modal-close" data-close-modal aria-label="Fechar">&times;</button>
+      <h2 class="modal-title" id="rsvpTitle">Confirmar Presença</h2>
+      <p class="modal-desc">Será uma alegria ter você conosco!</p>
+      <form class="rsvp-form" id="rsvpForm">
+        <label for="guestName">Nome</label>
+        <input type="text" id="guestName" required placeholder="Seu nome completo">
+        <label for="guestCount">Acompanhantes</label>
+        <select id="guestCount">
+          <option>Apenas eu</option>
+          <option>Eu + 1</option>
+          <option>Eu + 2</option>
+          <option>Eu + 3</option>
+        </select>
+        <button type="submit" class="btn-elegant btn-primary-wine">Enviar</button>
+      </form>
+      <div class="rsvp-success" id="rsvpSuccess">Obrigado! Sua presença foi registrada. 💛</div>
+    </div>
+  </div>
+
+  <!-- Modal: Lista de Presentes -->
+  <div class="modal-backdrop" id="giftsModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-labelledby="giftsTitle">
+      <button class="modal-close" data-close-modal aria-label="Fechar">&times;</button>
+      <h2 class="modal-title" id="giftsTitle">Lista de Presentes</h2>
+      <p class="modal-desc">Em breve disponibilizaremos nossa lista de presentes por aqui.</p>
+      <button class="btn-elegant btn-secondary-gold" data-close-modal>Fechar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
