@@ -2376,3 +2376,27 @@ body.is-opened .page-indicators {
 .s5-box {
   padding: clamp(16px, 2.5dvh, 22px) clamp(14px, 3vw, 20px) !important;
 }
+
+
+/* ===================================================
+   CORREÇÃO DE PREENCHIMENTO & AMPERSAND REDIMENSIONADO
+=================================================== */
+.s3-monogram,
+.s4-monogram,
+.s5-monogram,
+.s6-monogram,
+.s3-name {
+  color: var(--wine-dark) !important;
+  -webkit-text-fill-color: var(--wine-dark) !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  text-shadow: 0 1px 2px rgba(94, 11, 59, 0.1);
+}
+
+.s3-monogram span,
+.s4-monogram span,
+.s5-monogram span,
+.s6-monogram span {
+  font-size: 0.75em !important;
+  font-style: italic !important; /* Mantém a elegância da Times */
+}
