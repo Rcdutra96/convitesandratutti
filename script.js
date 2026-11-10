@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevPageBtn = document.getElementById('prevPageBtn');
   const nextPageBtn = document.getElementById('nextPageBtn');
   const pageIndicators = document.querySelectorAll('.page-indicators .dot');
-  const pageTurnSound = document.getElementById('pageTurnSound');
   const bgMusic = document.getElementById('bgMusic');
   const soundToggleBtn = document.getElementById('soundToggleBtn');
 
@@ -18,16 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let hasUserInteracted = false;
   let isOpening = false;
 
-  // Pré-carregamento imediato do áudio para eliminar qualquer delay na virada de página
-  if (pageTurnSound) {
-    pageTurnSound.preload = 'auto';
-    pageTurnSound.load();
-  }
-
   if (bgMusic) {
     bgMusic.preload = 'auto';
     bgMusic.load();
-    bgMusic.volume = 0.25;
+    bgMusic.volume = 0.17;
   }
 
   // Oculta o loader rapidamente após fontes/DOM estarem prontos
@@ -46,29 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setTimeout(hideLoader, 1200);
 
-  // Reproduzir som de virar página de forma instantânea
-  const playPageTurnSound = () => {
-    if (isSoundMuted || !hasUserInteracted || !pageTurnSound) return;
-    try {
-      pageTurnSound.currentTime = 0;
-      pageTurnSound.volume = 0.55;
-      pageTurnSound.playbackRate = 1.8; // Acelera o áudio em 1.5x
-      const playPromise = pageTurnSound.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Bloqueio de autoplay do navegador tratado silenciosamente
-        });
-      }
-    } catch (e) {
-      // Ignora erro de áudio
-    }
-  };
-
   // Atualizar estado e classes das páginas
-  const updatePagination = (playAudio = true) => {
-    if (playAudio) {
-      playPageTurnSound();
-    }
+  const updatePagination = () => {
 
     pages.forEach((page, index) => {
       page.classList.remove('page-active', 'page-prev', 'page-next');
@@ -114,10 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const goToPage = (index, playAudio = true) => {
+  const goToPage = (index) => {
     if (index < 0 || index >= pages.length || index === currentPageIndex) return;
     currentPageIndex = index;
-    updatePagination(playAudio);
+    updatePagination();
   };
 
   const nextPage = () => {
@@ -132,27 +104,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Inicializa a primeira página sem tocar áudio
-  updatePagination(false);
+  // Inicializa a primeira página
+  updatePagination();
 
   // Abertura do Envelope
   const openInvitation = () => {
     if (isOpening) return;
     isOpening = true;
     hasUserInteracted = true;
-
-    // "Acorda" e pré-carrega o áudio no primeiro gesto do usuário
-    if (pageTurnSound) {
-      pageTurnSound.load();
-      // Executa um play/pause instantâneo para desbloquear o buffer de áudio no iOS / Android
-      const unlockAudio = pageTurnSound.play();
-      if (unlockAudio !== undefined) {
-        unlockAudio.then(() => {
-          pageTurnSound.pause();
-          pageTurnSound.currentTime = 0;
-        }).catch(() => {});
-      }
-    }
 
     if (bgMusic && !isSoundMuted) {
       const playBg = bgMusic.play();
@@ -225,16 +184,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isSoundMuted) {
         soundToggleBtn.classList.add('is-muted');
         soundToggleBtn.setAttribute('title', 'Som desativado');
-        if (pageTurnSound) pageTurnSound.pause();
         if (bgMusic) {
-          bgMusic.volume = 0; // Zera o volume completamente
+          bgMusic.volume = 0;
           bgMusic.pause();
         }
       } else {
         soundToggleBtn.classList.remove('is-muted');
         soundToggleBtn.setAttribute('title', 'Som ativado');
         if (bgMusic) {
-          bgMusic.volume = 0.25; // Restaura o volume de fundo
+          bgMusic.volume = 0.17; // Novo volume de 17%
           bgMusic.play().catch(() => {});
         }
       }
