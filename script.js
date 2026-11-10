@@ -229,11 +229,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (bookContainer) {
     bookContainer.addEventListener('touchstart', (e) => {
+      // Ignora se for gesto com mais de 1 dedo (ex: pinça para zoom)
+      if (e.touches.length > 1) return;
       touchStartX = e.changedTouches[0].screenX;
       touchStartY = e.changedTouches[0].screenY;
     }, { passive: true });
 
     bookContainer.addEventListener('touchend', (e) => {
+      // Só processa o swipe se não for um gesto multitoque
+      if (e.changedTouches.length > 1) return;
       touchEndX = e.changedTouches[0].screenX;
       touchEndY = e.changedTouches[0].screenY;
       handleSwipeGesture();
@@ -368,4 +372,9 @@ document.addEventListener('DOMContentLoaded', () => {
       window.open(googleCalUrl, '_blank');
     });
   }
+});
+
+// Previne o zoom nativo prolongado (pinch) no iOS Safari
+document.addEventListener('gesturestart', function(e) {
+  e.preventDefault();
 });

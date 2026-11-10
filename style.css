@@ -37,9 +37,10 @@ html, body {
   background-color: var(--bg-pearl);
   color: var(--text-body);
   font-family: 'Montserrat', sans-serif;
-  overflow: hidden; /* Bloqueado até abrir o envelope */
+  overflow: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
+  touch-action: pan-x pan-y; /* Permite scroll, mas bloqueia zoom nativo */
 }
 
 body.is-opened {
