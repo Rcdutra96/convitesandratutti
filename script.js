@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextPageBtn = document.getElementById('nextPageBtn');
   const pageIndicators = document.querySelectorAll('.page-indicators .dot');
   const pageTurnSound = document.getElementById('pageTurnSound');
+  const bgMusic = document.getElementById('bgMusic');
   const soundToggleBtn = document.getElementById('soundToggleBtn');
 
   let currentPageIndex = 0;
@@ -21,6 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pageTurnSound) {
     pageTurnSound.preload = 'auto';
     pageTurnSound.load();
+  }
+
+  if (bgMusic) {
+    bgMusic.preload = 'auto';
+    bgMusic.load();
+    bgMusic.volume = 0.25;
   }
 
   // Oculta o loader rapidamente após fontes/DOM estarem prontos
@@ -147,6 +154,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    if (bgMusic && !isSoundMuted) {
+      const playBg = bgMusic.play();
+      if (playBg !== undefined) {
+        playBg.catch(() => {
+          // Bloqueio de autoplay tratado silenciosamente
+        });
+      }
+    }
+
     // 1. Quebra o lacre de cera e esconde prompt
     envelopeWrapper.classList.add('seal-breaking');
 
@@ -210,10 +226,17 @@ document.addEventListener('DOMContentLoaded', () => {
         soundToggleBtn.classList.add('is-muted');
         soundToggleBtn.setAttribute('title', 'Som desativado');
         if (pageTurnSound) pageTurnSound.pause();
+        if (bgMusic) {
+          bgMusic.volume = 0; // Zera o volume completamente
+          bgMusic.pause();
+        }
       } else {
         soundToggleBtn.classList.remove('is-muted');
         soundToggleBtn.setAttribute('title', 'Som ativado');
-        playPageTurnSound();
+        if (bgMusic) {
+          bgMusic.volume = 0.25; // Restaura o volume de fundo
+          bgMusic.play().catch(() => {});
+        }
       }
     });
   }
