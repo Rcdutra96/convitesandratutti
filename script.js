@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextPageBtn = document.getElementById('nextPageBtn');
   const pageIndicators = document.querySelectorAll('.page-indicators .dot');
   const bgMusic = document.getElementById('bgMusic');
+  let audioCtx;
+  let gainNode;
   const soundToggleBtn = document.getElementById('soundToggleBtn');
 
   let currentPageIndex = 0;
@@ -20,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (bgMusic) {
     bgMusic.preload = 'auto';
     bgMusic.load();
-    bgMusic.volume = 0.17;
   }
 
   // Oculta o loader rapidamente após fontes/DOM estarem prontos
@@ -114,12 +115,24 @@ document.addEventListener('DOMContentLoaded', () => {
     hasUserInteracted = true;
 
     if (bgMusic && !isSoundMuted) {
-      const playBg = bgMusic.play();
-      if (playBg !== undefined) {
-        playBg.catch(() => {
-          // Bloqueio de autoplay tratado silenciosamente
-        });
+      // Inicializa o contexto de áudio no primeiro clique do usuário
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+        const track = audioCtx.createMediaElementSource(bgMusic);
+        gainNode = audioCtx.createGain();
+        
+        // Define o ganho (volume real) para 17%
+        gainNode.gain.value = 0.17; 
+        
+        track.connect(gainNode).connect(audioCtx.destination);
       }
+      
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      
+      bgMusic.play().catch(() => {});
     }
 
     // 1. Quebra o lacre de cera e esconde prompt
@@ -181,18 +194,16 @@ document.addEventListener('DOMContentLoaded', () => {
     soundToggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       isSoundMuted = !isSoundMuted;
+      
       if (isSoundMuted) {
         soundToggleBtn.classList.add('is-muted');
         soundToggleBtn.setAttribute('title', 'Som desativado');
-        if (bgMusic) {
-          bgMusic.volume = 0;
-          bgMusic.pause();
-        }
+        if (bgMusic) bgMusic.pause();
       } else {
         soundToggleBtn.classList.remove('is-muted');
         soundToggleBtn.setAttribute('title', 'Som ativado');
         if (bgMusic) {
-          bgMusic.volume = 0.17; // Novo volume de 17%
+          if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
           bgMusic.play().catch(() => {});
         }
       }
