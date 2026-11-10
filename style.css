@@ -1438,7 +1438,8 @@ html, body, body.is-opened { overflow: hidden; }
 /* ==========================================
    TELA 6: ENCERRAMENTO
 ========================================== */
-.screen6 {
+.screen6,
+.screen7 {
   position: relative;
   min-height: 100dvh;
   min-height: 100dvh;
@@ -1450,7 +1451,8 @@ html, body, body.is-opened { overflow: hidden; }
   overflow: hidden;
 }
 
-.s6-content {
+.s6-content,
+.s7-content {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -1462,7 +1464,8 @@ html, body, body.is-opened { overflow: hidden; }
   gap: 24px;
 }
 
-.s6-title {
+.s6-title,
+.s7-title {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
   font-size: clamp(2.3rem, 10vw, 3rem);
@@ -1470,7 +1473,8 @@ html, body, body.is-opened { overflow: hidden; }
   color: var(--wine-dark);
 }
 
-.s6-text {
+.s6-text,
+.s7-text {
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   line-height: 1.8;
@@ -1478,7 +1482,8 @@ html, body, body.is-opened { overflow: hidden; }
   max-width: 330px;
 }
 
-.s6-footer {
+.s6-footer,
+.s7-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1486,7 +1491,8 @@ html, body, body.is-opened { overflow: hidden; }
   margin-top: 28px;
 }
 
-.s6-monogram {
+.s6-monogram,
+.s7-monogram {
   font-family: 'Playfair Display', 'Cinzel', serif;
   font-weight: 500;
   font-size: clamp(3.4rem, 15vw, 4.8rem);
@@ -1495,7 +1501,8 @@ html, body, body.is-opened { overflow: hidden; }
   color: var(--wine-dark);
 }
 
-.s6-date {
+.s6-date,
+.s7-date {
   font-family: 'Cinzel', 'Playfair Display', serif;
   font-weight: 400;
   font-size: 0.9rem;
@@ -1592,7 +1599,8 @@ html, body, body.is-opened {
 .page-screen3 .screen3,
 .page-screen4 .screen4,
 .page-screen5 .screen5,
-.page-screen6 .screen6 {
+.page-screen6 .screen6,
+.page-screen7 .screen7 {
   min-height: 100%;
   width: 100%;
   box-sizing: border-box;
@@ -1601,7 +1609,8 @@ html, body, body.is-opened {
 .page-screen3 .screen3,
 .page-screen4 .screen4,
 .page-screen5 .screen5,
-.page-screen6 .screen6 {
+.page-screen6 .screen6,
+.page-screen7 .screen7 {
   padding-top: clamp(100px, 16vh, 150px);
   padding-bottom: clamp(90px, 14vh, 130px);
 }
@@ -1802,7 +1811,8 @@ body.is-opened .page-indicators {
 .screen3,
 .screen4,
 .screen5,
-.screen6 {
+.screen6,
+.screen7 {
   min-height: 100% !important;
   height: 100% !important;
   max-height: 100% !important;
@@ -1851,7 +1861,8 @@ body.is-opened .page-indicators {
 .s3-content,
 .s4-content,
 .s5-content,
-.s6-content {
+.s6-content,
+.s7-content {
   gap: clamp(10px, 2.2dvh, 26px) !important;
   position: relative !important;
   z-index: 5 !important;
@@ -1874,14 +1885,16 @@ body.is-opened .page-indicators {
 
 /* Escalar tamanhos de fontes grandes considerando vmin / dvh */
 .s3-monogram,
-.s6-monogram {
+.s6-monogram,
+.s7-monogram {
   font-size: clamp(2.4rem, 7dvh, 3.8rem) !important;
   line-height: 1 !important;
 }
 
 .s4-title,
 .s5-title,
-.s6-title {
+.s6-title,
+.s7-title {
   font-size: clamp(1.4rem, 4.2dvh, 2.2rem) !important;
   line-height: 1.15 !important;
 }
@@ -1925,7 +1938,8 @@ body.is-opened .page-indicators {
   height: clamp(28px, 4.5dvh, 38px) !important;
 }
 
-.s6-footer {
+.s6-footer,
+.s7-footer {
   margin-top: clamp(10px, 2dvh, 24px) !important;
   gap: clamp(4px, 1dvh, 10px) !important;
 }
@@ -2163,7 +2177,8 @@ body.is-opened .page-indicators {
 .screen3,
 .screen4,
 .screen5,
-.screen6 {
+.screen6,
+.screen7 {
   min-height: 100% !important;
   height: 100% !important;
   max-height: 100% !important;
@@ -2195,7 +2210,8 @@ body.is-opened .page-indicators {
 .s3-content,
 .s4-content,
 .s5-content,
-.s6-content {
+.s6-content,
+.s7-content {
   max-width: 460px !important; /* Aumentado de 420 para 460 */
   padding: 0 !important;
 }
@@ -2271,7 +2287,11 @@ body.is-opened .page-indicators {
 .s6-title,
 .s6-text,
 .s6-date,
-.s6-footer p:not(.s6-monogram) {
+.s6-footer p:not(.s6-monogram),
+.s7-title,
+.s7-text,
+.s7-date,
+.s7-footer p:not(.s7-monogram) {
   font-family: 'Caramella', 'Cinzel', serif !important;
 }
 
@@ -2325,7 +2345,9 @@ body.is-opened .page-indicators {
 .s4-monogram,
 .s5-monogram,
 .s6-monogram,
-.s6-footer .s6-monogram {
+.s6-footer .s6-monogram,
+.s7-monogram,
+.s7-footer .s7-monogram {
   font-family: 'Times New Roman', Times, serif !important;
 }
 
@@ -2388,6 +2410,8 @@ body.is-opened .page-indicators {
 .s5-monogram,
 .s6-monogram,
 .s6-footer .s6-monogram,
+.s7-monogram,
+.s7-footer .s7-monogram,
 .s3-name,
 .names {
   color: var(--wine-dark) !important;
@@ -2400,7 +2424,8 @@ body.is-opened .page-indicators {
 .s3-monogram span,
 .s4-monogram span,
 .s5-monogram span,
-.s6-monogram span {
+.s6-monogram span,
+.s7-monogram span {
   font-size: 0.75em !important;
   font-style: normal !important;
 }
@@ -2408,11 +2433,19 @@ body.is-opened .page-indicators {
 /* ===================================================
    CORREÇÃO DO BUG DE VETORES SOBREPOSTOS NO ANDROID
 =================================================== */
-.love-quote, .place, .s3-text, .s3-place, .s3-date, .s4-title, .s4-place, .s4-time, .s4-address, .s4-btn, .s5-title, .s5-intro, .s5-box-text, .s5-deadline, .s5-btn, .s5-request-title, .s5-request-text, .s5-caption, .s6-title, .s6-text, .s6-date, .s6-footer p {
+.love-quote, .place, .s3-text, .s3-place, .s3-date, .s4-title, .s4-place, .s4-time, .s4-address, .s4-btn, .s5-title, .s5-intro, .s5-box-text, .s5-deadline, .s5-btn, .s5-request-title, .s5-request-text, .s5-caption, .s6-title, .s6-text, .s6-date, .s6-footer p, .s7-title, .s7-text, .s7-date, .s7-footer p {
   color: var(--wine-dark) !important;
   -webkit-text-fill-color: var(--wine-dark) !important;
   -webkit-text-stroke: 0.4px var(--wine-dark) !important;
   text-shadow: 0 0 1px var(--wine-dark) !important;
   background-clip: border-box !important;
   -webkit-background-clip: border-box !important;
+}
+
+/* ===================================================
+   TELA 6: TEXTO DE PRESENTES
+=================================================== */
+.s-gift-text {
+  max-width: 360px !important;
+  margin: 10px 0 !important;
 }
